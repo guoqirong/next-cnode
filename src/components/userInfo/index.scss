@@ -1,0 +1,23 @@
+.user-info-card {
+  a {
+    color: #778087;
+  }
+  a:hover {
+    color: #1890ff;
+  }
+  .user-name {
+    margin-left: 10px;
+  }
+  .user-score {
+    margin-top: 10px;
+  }
+}
+.user-info-card.is-Can-Click {
+  cursor: pointer;
+}
+.no-padding-card {
+  margin-top: 10px;
+  .ant-card-body {
+    padding: 0;
+  }
+}
