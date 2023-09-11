@@ -6,16 +6,18 @@ import UserInfo from '@/components/userInfo';
 import useHttpRequest, { resDataType } from '@/utils/request';
 import { Button, Card, message, Pagination } from 'antd';
 import { AxiosResponse } from 'axios';
-import { FunctionComponent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { topicTypeList } from '@/constant';
 import './index.scss';
+import { adornUrl, httpRequest } from '@/utils/serverRequest';
 
 interface IndexPageProps {
   listParm: string;
+  list?: topicListItemType[];
 }
 
-const IndexPage: FunctionComponent<IndexPageProps> = ({ listParm }) => {
+const IndexPage = ({ listParm, list }: IndexPageProps) => {
   interface getTopicListType {
     page?: number;
     tab?: string;
@@ -58,18 +60,16 @@ const IndexPage: FunctionComponent<IndexPageProps> = ({ listParm }) => {
       setActiveTypeName(tab);
       setPage(Number(pageNum));
       setLimit(Number(limitNum));
+      getTopicList({
+        page: Number(pageNum),
+        tab: tab,
+        limit: Number(limitNum),
+      });
+    } else {
+      setListData(list ?? []);
     }
-    getTopicList(
-      tab && pageNum && limitNum
-        ? {
-            page: Number(pageNum),
-            tab: tab,
-            limit: Number(limitNum),
-          }
-        : undefined,
-    );
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [list]);
 
   // 发布话题
   const addTopic = () => {
@@ -152,5 +152,23 @@ const IndexPage: FunctionComponent<IndexPageProps> = ({ listParm }) => {
     </PageWrapper>
   );
 };
+
+IndexPage.getInitialProps = async () => {
+  const res = await httpRequest({
+    url: adornUrl('/api/v1/topics'),
+    method: 'get',
+    params: {
+      page: 1,
+      tab: 'all',
+      limit: 20,
+      mdrender: false,
+    },
+  });
+  if (res?.data?.success) {
+    return { list: res?.data.data ?? [] };
+  } else {
+    return {};
+  }
+}
 
 export default IndexPage;
