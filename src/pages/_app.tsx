@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Head>
       <title>next-cnode</title>
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerPolicy="origin"></script>
+      <script src="https://cdn.tiny.cloud/1/mh2f2ffdlr2zzaky3yk52tx8rtxrxnbt1a6p7p7jx96hy70r/tinymce/5/tinymce.min.js" referrerPolicy="origin"></script>
     </Head>
     <GeneralLayout>
       <Component {...pageProps} />
