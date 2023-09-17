@@ -1,0 +1,22 @@
+.message-card {
+  width: 100%;
+  .ant-card-body {
+    padding: 10px;
+    .ant-list-item {
+      .message-topic-title {
+        background-color: #b4b4b4;
+        padding: 4px;
+      }
+      .message-title {
+        width: calc(100% - 80px);
+        display: inline-block;
+      }
+      .message-button {
+        float: right;
+      }
+    }
+  }
+}
+.message-card.readed-card {
+  margin-top: 10px;
+}
