@@ -1,0 +1,17 @@
+.user-detail-card {
+  margin-bottom: 10px;
+  .user-name {
+    margin-left: 10px;
+  }
+  .user-score {
+    margin-top: 10px;
+  }
+}
+.user-detail-card.no-padding {
+  .ant-card-body {
+    padding: 0 12px;
+  }
+}
+.user-detail-card.is-last {
+  margin-bottom: 0px;
+}

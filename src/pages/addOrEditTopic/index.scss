@@ -1,0 +1,17 @@
+.edit-card {
+  .site-page-header {
+    border-bottom: 1px solid rgb(235, 237, 240);
+    padding: 8px 18px;
+  }
+  .edit-topic-form {
+    margin: 0 10px;
+    .ant-form-item-has-error {
+      .tox-tinymce {
+        border-color: #ff4d4f;
+      }
+    }
+    .ant-form-item.is-last-item {
+      margin-bottom: 10px;
+    }
+  }
+}

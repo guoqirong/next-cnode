@@ -1,25 +1,25 @@
-import { Avatar, Card, Empty, List } from 'antd';
-import { FunctionComponent } from 'react';
-import './index.scss';
-import { userDataType } from '@/store/reducers/user';
-import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { Avatar, Card, Empty, List } from 'antd';
+import { userDataType } from '@/store/reducers/user';
+import { AppState } from '@/store/store';
+import './index.scss';
 
 interface UserInfoProps {
-  token?: string;
   isLoading?: boolean;
-  userData?: userDataType;
   userInfo?: userDataType;
   isTopicsRepliesList?: boolean;
 }
 
-const UserInfo: FunctionComponent<UserInfoProps> = ({
-  token,
+const UserInfo: NextPage<UserInfoProps> = ({
   isLoading,
-  userData,
   userInfo,
   isTopicsRepliesList = true,
 }) => {
+  const token = useSelector((state: AppState) => state.user.token);
+  const userData = useSelector((state: AppState) => state.user.userData);
   const user = userInfo ?? userData;
   const history = useRouter();
 

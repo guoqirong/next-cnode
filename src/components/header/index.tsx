@@ -1,23 +1,24 @@
-import useEventBus from '@/utils/event-bus';
-import useHttpRequest from '@/utils/request';
-import { Badge } from 'antd';
-import { Header } from 'antd/lib/layout/layout';
-import { FunctionComponent, useEffect, useState } from 'react';
-import './index.scss';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Badge } from 'antd';
+import { Header } from 'antd/lib/layout/layout';
+import useEventBus from '@/utils/event-bus';
+import useHttpRequest from '@/utils/request';
+import { AppState } from '@/store/store';
+import './index.scss';
 
-interface HeaderCompProps {
-  token?: string;
-  dispatch?: any;
-}
-
-const HeaderComp: FunctionComponent<HeaderCompProps> = (props) => {
-  const { token, dispatch } = props;
+const HeaderComp: NextPage = () => {
+  const token = useSelector((state: AppState) => state.user.token);
+  const dispatch = useDispatch();
+  const history = useRouter();
 
   // 前往首页
   const gotIndex = () => {
-    // history.push('/');
+    history.push('/');
   };
 
   // 获取未读信息数
@@ -55,14 +56,14 @@ const HeaderComp: FunctionComponent<HeaderCompProps> = (props) => {
   const goLoginOut = () => {
     localStorage.clear();
     dispatch({
-      type: 'global/updateToken',
+      type: 'user/updateToken',
       payload: '',
     });
     dispatch({
-      type: 'global/updateSimpleUserData',
+      type: 'user/updateSimpleUserData',
       payload: {},
     });
-    // history.push('/');
+    history.push('/');
   };
 
   return (
@@ -119,10 +120,5 @@ const HeaderComp: FunctionComponent<HeaderCompProps> = (props) => {
     </Header>
   );
 };
-
-// const mapState = (state: { global: globalStateType }) => {
-//   const { global } = state;
-//   return global;
-// };
 
 export default HeaderComp;

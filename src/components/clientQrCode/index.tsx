@@ -1,15 +1,18 @@
+import { NextPage } from 'next';
+import Image from 'next/image';
 import { Card } from 'antd';
-import { FunctionComponent } from 'react';
 import './index.scss';
 
-const ClientQtCode: FunctionComponent = () => {
+const ClientQtCode: NextPage = () => {
   return (
     <Card title="客户端二维码" className="client-qt-code-card">
-      <img
+      <Image
+        height={500}
+        width={500}
         className="qt-code"
         alt="二维码"
         src="https://static.cnodejs.org/FtG0YVgQ6iginiLpf9W4_ShjiLfU"
-      ></img>
+      />
       <div className="footer-text">
         <a
           href="https://github.com/soliury/noder-react-native"

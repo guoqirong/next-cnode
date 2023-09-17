@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { updateLoading, updateSimpleUserData, updateToken, updateUserData } from "../actions/user";
+import { updateListParm, updateLoading, updateSimpleUserData, updateToken, updateUserData } from "../actions/user";
 
 // Type for our state
 export interface UserState {
@@ -8,6 +8,7 @@ export interface UserState {
   simpleUserData: simpleUserDataType | undefined;
   userData: userDataType | undefined;
   isLoading: boolean;
+  listParm: string;
 }
 
 export interface simpleUserDataType {
@@ -26,7 +27,7 @@ export interface userDataType {
   score: number;
 }
 
-interface recentDataItemType {
+export interface recentDataItemType {
   author: {
     avatar_url: string;
     loginname: string;
@@ -42,6 +43,7 @@ const initialState: UserState = {
   simpleUserData: undefined,
   userData: undefined,
   isLoading: false,
+  listParm: '',
 };
 
 // Actual Slice
@@ -50,25 +52,24 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
 
-    // 数据更新action
+    // 数据更新actions
     updateToken,
     updateSimpleUserData,
     updateUserData,
     updateLoading,
+    updateListParm,
 
     // Special reducer for hydrating the state. Special case for next-redux-wrapper
     extraReducers: {
       [HYDRATE]: (state: any, action: { payload: any }) => {
         return {
           ...state,
-          ...action.payload.auth,
+          ...action.payload.user,
         };
       },
     },
 
   } as any,
 });
-
-export const { ...actions } = userSlice.actions;
 
 export default userSlice.reducer;

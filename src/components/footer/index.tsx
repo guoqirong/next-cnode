@@ -1,8 +1,8 @@
+import { NextPage } from 'next';
 import { Footer } from 'antd/lib/layout/layout';
-import { FunctionComponent } from 'react';
 import './index.scss';
 
-const FooterComp: FunctionComponent = () => {
+const FooterComp: NextPage = () => {
   return (
     <Footer className="footer-wapper">
       <div>

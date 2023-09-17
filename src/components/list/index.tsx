@@ -1,7 +1,8 @@
-import { FunctionComponent, ReactNode } from 'react';
-import ListItem, { topicListItemType } from '@/components/list-item';
+import { NextPage } from 'next';
+import { ReactNode } from 'react';
 import { Empty, List } from 'antd';
-import { recentDataItemType } from '@/models';
+import ListItem, { topicListItemType } from '@/components/listItem';
+import { recentDataItemType } from '@/store/reducers/user';
 
 interface ListCompProps {
   dataList: topicListItemType[] | recentDataItemType[];
@@ -11,7 +12,7 @@ interface ListCompProps {
   footer?: ReactNode;
 }
 
-const ListComp: FunctionComponent<ListCompProps> = ({
+const ListComp: NextPage<ListCompProps> = ({
   dataList,
   isSimpleItem = false,
   listLoading,

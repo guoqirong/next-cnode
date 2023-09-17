@@ -1,6 +1,7 @@
-import { formatDate, getTopicTab } from '@/utils';
+import { NextPage } from 'next';
 import { Avatar, List, Tag } from 'antd';
-import { FunctionComponent } from 'react';
+import { formatDate, getTopicTab } from '@/utils';
+import { recentDataItemType } from '@/store/reducers/user';
 import './index.scss';
 
 export interface topicListItemType {
@@ -22,12 +23,12 @@ export interface topicListItemType {
 }
 
 interface ListItemProps {
-  topicItem: topicListItemType;
+  topicItem: topicListItemType | recentDataItemType;
   isSimpleItem: boolean;
   onItemClick: Function;
 }
 
-const ListItem: FunctionComponent<ListItemProps> = ({
+const ListItem: NextPage<ListItemProps> = ({
   topicItem,
   isSimpleItem,
   onItemClick,

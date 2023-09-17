@@ -1,4 +1,5 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { NextPage } from 'next';
+import { ReactNode } from 'react';
 import './index.scss';
 
 interface PageWrapperProps {
@@ -6,7 +7,7 @@ interface PageWrapperProps {
   children: ReactNode;
 }
 
-const PageWrapper: FunctionComponent<PageWrapperProps> = ({
+const PageWrapper: NextPage<PageWrapperProps> = ({
   children,
   right,
 }) => {

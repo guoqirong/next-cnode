@@ -1,0 +1,23 @@
+.page-header-wrapper {
+  border-bottom: 1px solid #ebedf0;
+  padding: 8px 18px;
+  .anticon.anticon-arrow-left {
+    margin-right: 16px;
+    font-size: 16px;
+    color: rgba(0,0,0,.85);
+    vertical-align: top;
+    margin-top: 10px;
+  }
+  .page-title {
+    display: inline-block;
+    width: calc(100% - 32px);
+    margin-bottom: 0;
+    color: rgba(0,0,0,.85);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
